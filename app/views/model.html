@@ -1,0 +1,54 @@
+<div class="section">
+  <h3>数据绑定</h3>
+
+  <p ng-controller="nameController">Welcome, {{name.text}}</p>
+</div>
+
+<div class="section" ng-controller="nameController">
+  <h3>动态数据绑定</h3>
+  <input ng-model="name.text">
+
+  <p>Welcome, {{name.text}}</p>
+</div>
+
+<div class="section" ng-controller="listingController">
+  <h3>自定义指令</h3>
+
+  <p>删除我收藏的listing</p>
+  {{listing.name}}
+  <div class="section">
+    <div data-ng-repeat="listing in listings">
+      <span>{{listing.name}}</span>
+      <span>{{listing.address}}</span>
+
+      <button ng-click="remove($index)">remove</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" ng-controller="buttonController">
+  <h3>禁用按钮</h3>
+  <button class="button-disable-{{isDisabled}}" ng-click="block()">禁用</button>
+</div>
+
+<div class="section" ng-controller="cartController">
+  <h3>监控数据模型变化</h3>
+  <table>
+    <tr>
+      <td>商品名称</td>
+      <td>数量</td>
+      <td>单价</td>
+      <td>金额</td>
+    </tr>
+    <tr ng-repeat="item in items">
+      <td>{{item.title}}</td>
+      <td><input ng-model="item.quantity"></td>
+      <td>{{item.price | currency}}</span></td>
+      <td>{{item.price * item.quantity |currency}}</td>
+    </tr>
+  </table>
+  <span>原价：{{totalCart() | currency}}</span><br>
+  <span>折扣：{{discount | currency}}</span><br>
+  <span>合计：{{subtotal() | currency}}</span>
+</div>
